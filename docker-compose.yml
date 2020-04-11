@@ -9,7 +9,7 @@ services:
       - 800:80
       - 8443:443
     networks:
-      - cloud_net
+      - kodbox_net
     restart: always
     volumes:
       - ./nginx/conf:/etc/nginx/conf.d
@@ -22,9 +22,9 @@ services:
     restart: always
     hostname: db
     ports:
-      - 3308:3306
+      - 3310:3306
     networks:
-      - cloud_net
+      - kodbox_net
     volumes:
       - ./mysql/data:/var/lib/mysql
 #      - ./mysql/conf:/etc/mysql
@@ -45,7 +45,7 @@ services:
     ports:
       - 9080:80/tcp
     networks:
-      - cloud_net
+      - kodbox_net
     volumes:
       - ./kodbox:/var/www/localhost/htdocs
     restart: always
@@ -56,7 +56,7 @@ services:
     hostname: redis
     restart: always
     networks:
-      - cloud_net
+      - kodbox_net
     expose:
       - 6379
     ports:
@@ -68,11 +68,11 @@ services:
     hostname: memcached
     restart: always
     networks:
-      - cloud_net
+      - kodbox_net
     expose:
       - 11211
     ports:
       - 11212:11211
 
 networks:
-  cloud_net:
+  kodbox_net:
