@@ -38,7 +38,8 @@ COPY init.sh /
 
 RUN adduser -D -g 'www' www \
     && chmod -R 0777 /var/www/localhost/htdocs \
-    && chmod +x /init.sh
+    && chmod +x /init.sh \
+    && mkdir -p /var/php/session && chown -R www:www /var/php
 
 
 ##下载kodbox

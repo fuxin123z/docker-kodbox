@@ -43,7 +43,8 @@ RUN adduser -D -g 'www' www \
     && chmod -R +x /var/www/ \
     && chmod +x /init.sh \
     && chown -R www:www /var/lib/nginx \
-    && touch /var/log/php7/www.error.log && chmod 777 /var/log/php7/www.error.log
+    && touch /var/log/php7/www.error.log && chmod 777 /var/log/php7/www.error.log \
+    && mkdir -p /var/php/session && chown -R www:www /var/php
 
 ##下载kodbox
 WORKDIR /var/www/localhost/htdocs/
