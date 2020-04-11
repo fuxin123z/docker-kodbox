@@ -1,0 +1,78 @@
+version: '3'
+services:
+
+  nginx:
+    container_name: nginx
+    hostname: nginx
+    image: nginx:alpine
+    ports:
+      - 800:80
+      - 8443:443
+    networks:
+      - cloud_net
+    restart: always
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./ssl:/etc/certs
+      - ./nginx/log:/var/log/nginx
+
+  db:
+    container_name: kodbox_db
+    image: mariadb:10.4
+    restart: always
+    hostname: db
+    ports:
+      - 3308:3306
+    networks:
+      - cloud_net
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+#      - ./mysql/conf:/etc/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PASSWORD=kodbox
+      - MYSQL_DATABASE=kodbox
+      - MYSQL_USER=kodbox
+
+  kodbox_web:
+#   arm64的机器 换成 scjtqs/nextcloud:arm64
+    image: scjtqs/kodbox:amd64
+    container_name: kodbox_web
+    hostname: kodbox_web
+    depends_on:
+      - redis
+      - db
+    ports:
+      - 9080:80/tcp
+    networks:
+      - cloud_net
+    volumes:
+      - ./kodbox:/var/www/localhost/htdocs
+    restart: always
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    hostname: redis
+    restart: always
+    networks:
+      - cloud_net
+    expose:
+      - 6379
+    ports:
+      - 6380:6379/tcp
+
+  memcached:
+    image: memcached:alpine
+    container_name: memcached
+    hostname: memcached
+    restart: always
+    networks:
+      - cloud_net
+    expose:
+      - 11211
+    ports:
+      - 11212:11211
+
+networks:
+  cloud_net:

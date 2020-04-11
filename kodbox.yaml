@@ -1,0 +1,10 @@
+image: scjtqs/kodbox:latest
+manifests:
+  - image: scjtqs/kodbox:amd64
+    platform:
+      architecture: amd64
+      os: linux
+  - image: scjtqs/kodbox:arm64
+    platform:
+      architecture: arm64
+      os: linux
