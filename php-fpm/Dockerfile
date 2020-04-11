@@ -18,31 +18,31 @@ RUN apk add \
                 unzip \
                 openssl \
                 curl \
-                apache2 \
-#                nginx \
-                php7-apache2 \
-#                php7-fpm \
+                nginx \
+                php7-fpm \
                 php7 php7-pecl-apcu php7-pecl-imagick php7-pecl-redis php7-pecl-uuid php7-pecl-mcrypt php7-pecl-oauth php7-pecl-ssh2 php7-pecl-memcached php7-pecl-protobuf php7-pecl-event  \
                 php7-pdo php7-phar php7-sockets php7-soap php7-ftp php7-static php7-bz2 php7-simplexml php7-xmlwriter php7-curl php7-xml php7-json php7-openssl php7-sqlite3 php7-pear php7-pdo_mysql php7-xsl php7-mbstring php7-pdo_sqlite php7-opcache php7-recode php7-ldap php7-posix php7-session php7-gd php7-gettext php7-iconv php7-imap php7-zip php7-ctype php7-bcmath php7-dom php7-calendar php7-mysqli \
-                   && mkdir -p /run/apache2 && mkdir -p /run/nginx \
-#                   && ln -sf /dev/stdout /var/log/nginx/access.log \
-#                   && ln -sf /dev/stderr /var/log/nginx/error.log \
-                   && ln -sf /dev/stdout /var/log/apache2/access.log \
-                   && ln -sf /dev/stderr /var/log/apache2/error.log \
+                   && mkdir -p /run/nginx \
+                   && ln -sf /dev/stdout /var/log/nginx/access.log \
+                   && ln -sf /dev/stderr /var/log/nginx/error.log \
                    && rm -rf /var/cache/apk/*
 
-#COPY default.conf /etc/nginx/conf.d/
-#COPY www.conf /etc/php7/php-fpm.d/
-COPY httpd.conf /etc/apache2/
+COPY default.conf /etc/nginx/conf.d/
+COPY nginx.conf /etc/nginx/
+COPY www.conf /etc/php7/php-fpm.d/
+COPY php.ini /etc/php7/
 COPY init.sh /
 
 RUN adduser -D -g 'www' www \
-#    && chown -R apache:apache /var/www \
-    && chmod +x /init.sh
-
+    && mkdir -p /var/www/localhost/htdocs/ \
+    && chown -R www:www /var/www/localhost/htdocs/ \
+    && chmod -R +x /var/www/ \
+    && chmod +x /init.sh \
+    && chown -R www:www /var/lib/nginx \
+    && touch /var/log/php7/www.error.log && chmod 777 /var/log/php7/www.error.log
 
 ##下载kodbox
-WORKDIR /var/www
+WORKDIR /var/www/localhost/htdocs/
 
 #STOPSIGNAL SIGQUIT
 
