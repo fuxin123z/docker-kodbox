@@ -10,7 +10,11 @@ ENV PHP_MAX_FILE_UPLOAD 200
 ENV PHP_MAX_POST        100M
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+#RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+##更新 镜像源
+RUN echo -e "http://mirrors.aliyun.com/alpine/v3.11/main" > /etc/apk/repositories
+RUN echo -e "\n" >> /etc/apk/repositories
+RUN echo -e "http://mirrors.aliyun.com/alpine/v3.11/community" >> /etc/apk/repositories
 
 RUN apk add \
                 ca-certificates \
