@@ -36,7 +36,7 @@ services:
 
   kodbox_web:
 #   arm64的机器 换成 scjtqs/nextcloud:arm64
-    image: scjtqs/kodbox:fpm-amd64
+    image: scjtqs/kodbox:latest
     container_name: kodbox_web
     hostname: kodbox_web
     depends_on:
