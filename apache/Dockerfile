@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.11
 
 # 作者信息
 MAINTAINER DDNS Docker Maintainers "scjtqs@qq.com"
