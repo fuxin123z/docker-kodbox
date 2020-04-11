@@ -42,7 +42,7 @@ location / {
 # 升级流程
 > docker-compose 升级镜像真tm方便：
 >
-> 1、docker-compose down 停止服务
+> 1、docker-compose down 停止服务（这步可以不用执行）
 >
 > 2、docker-compose pull 更新image
 >
