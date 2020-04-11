@@ -20,12 +20,6 @@
 
 ### nginx 反向代理的部分片段
 ````nginx
-   location = /.well-known/carddav {
-      return 301 $scheme://$host:$server_port/remote.php/dav;
-    }
-    location = /.well-known/caldav {
-      return 301 $scheme://$host:$server_port/remote.php/dav;
-    }
 location / {
          proxy_http_version 1.1;
 #        proxy_redirect off;
