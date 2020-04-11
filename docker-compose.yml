@@ -62,17 +62,5 @@ services:
     ports:
       - 6380:6379/tcp
 
-  memcached:
-    image: memcached:alpine
-    container_name: kodbox_memcached
-    hostname: memcached
-    restart: always
-    networks:
-      - kodbox_net
-    expose:
-      - 11211
-    ports:
-      - 11212:11211
-
 networks:
   kodbox_net:
