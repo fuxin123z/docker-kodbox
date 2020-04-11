@@ -3,4 +3,4 @@
 cd php-fpm
 docker build --rm --no-cache  -t scjtqs/kodbox:arm64  .
 sleep 5
-docker push scjtqs/kodbox:apache-arm64
+docker push scjtqs/kodbox:arm64
