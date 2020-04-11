@@ -1,6 +1,7 @@
 #!/bin/sh
 if [ -f /var/www/localhost/htdocs/install.lock ];then
     echo 'kodbox installed'
+    chown -R www:www /var/www
     touch /var/www/localhost/htdocs/install.lock
 else
 #    curl  -k -o /var/www/kodexplorer4.40.zip https://pan.xxooxxoo.xyz:8444/f/29e55228097a4ced9b1d/?dl=1
