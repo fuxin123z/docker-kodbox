@@ -1,0 +1,10 @@
+image: scjtqs/kodbox:fpm
+manifests:
+  - image: scjtqs/kodbox:fpm-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  - image: scjtqs/kodbox:fpm-arm64
+    platform:
+      architecture: arm64
+      os: linux
