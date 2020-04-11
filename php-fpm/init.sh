@@ -6,7 +6,7 @@ else
 #    curl  -k -o /var/www/kodexplorer4.40.zip https://pan.xxooxxoo.xyz:8444/f/29e55228097a4ced9b1d/?dl=1
     wget   -O /var/www/kodexplorer4.40.zip https://pan.xxooxxoo.xyz:8444/f/29e55228097a4ced9b1d/?dl=1
     unzip /var/www/kodexplorer4.40.zip -d /var/www/localhost/htdocs
-#    chown -R www:nginx /var/www
+    chown -R www:www /var/www
     chmod -R 777 /var/www/localhost/htdocs
     rm /var/www/kodexplorer4.40.zip
     touch /var/www/localhost/htdocs/install.lock
